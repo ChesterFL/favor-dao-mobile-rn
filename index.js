@@ -1,7 +1,8 @@
 import { registerRootComponent } from 'expo';
 // import '@react-native-anywhere/polyfill-base64';
 // import 'react-native-get-random-values'
-import './global'
+
+import './shim'
 
 import App from './App';
 

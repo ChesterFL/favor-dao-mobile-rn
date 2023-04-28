@@ -7,42 +7,46 @@ import ProtocolRadioSelect from "../components/ProtocolRadioSelect";
 import FavorDaoButton from "../components/FavorDaoButton";
 import {Color, Padding} from "../GlobalStyles";
 import {useEffect, useState} from "react";
-import WalletController from "../lib/WalletController";
-
+import {ethers} from "ethers";
+import Web3 from 'web3';
 
 const CreateWallet = () => {
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
-    const [mnemonicArray, setMnemonicArray] = useState<string[]>([]);
+    const [mnemonic, setMnemonic] = useState<string>('');
     const [agree, setAgree] = useState(false);
 
     const createMnemonic = () => {
-        const mnemonic = WalletController.createMnemonic();
-        setMnemonicArray(mnemonic.split(' '))
+
     }
 
     const create = () => {
 
     }
+    useEffect(() => {
+        console.log(ethers.HDNodeWallet.createRandom('123'))
+    }, [])
 
     return <>
-        <View style={styles.createWallet} onLayout={createMnemonic}>
+        <View style={styles.createWallet}>
             <FavorDaoNavBar
                 title="Create wallet"
                 vector={require("../assets/vector6.png")}
             />
-            <WalletWords mnemonicArray={mnemonicArray}/>
+            <WalletWords mnemonicArray={mnemonic ? mnemonic.split(' ') : []}/>
             <TextInputBlock
                 title={'Password'}
                 placeholder={`Please enter passwords`}
                 value={password}
                 setValue={setPassword}
+                secureTextEntry={true}
             />
             <TextInputBlock
                 title={'Confirm Password'}
                 placeholder={`Please enter passwords again`}
                 value={repeatPassword}
                 setValue={setRepeatPassword}
+                secureTextEntry={true}
             />
             <ProtocolRadioSelect value={agree} setValue={setAgree}/>
             <TouchableOpacity onPress={create}>

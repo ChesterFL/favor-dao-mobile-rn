@@ -8,9 +8,6 @@ import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/lib/integration/react';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import {
-    BottomSheetModalProvider,
-} from '@gorhom/bottom-sheet';
 
 
 export default function App() {

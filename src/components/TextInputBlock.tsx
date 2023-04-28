@@ -2,16 +2,23 @@ import * as React from "react";
 import {Text, StyleSheet, View, TextInput} from "react-native";
 import {FontSize, FontFamily, Color, Border, Padding} from "../GlobalStyles";
 
-type TextInputBlockType = {
-    title: string;
-    placeholder?: string;
-    value: string,
+type TextInputBlockType = React.ComponentProps<typeof TextInput> & {
+    title: string
+    value: string
     setValue: (value: string) => void
-    multiline?: boolean
     height?: number
-};
+}
 
-const TextInputBlock = ({title, placeholder, value, setValue, multiline = false, height = 100}: TextInputBlockType) => {
+const TextInputBlock = ({
+                            title,
+                            placeholder,
+                            value,
+                            setValue,
+                            multiline = false,
+                            height = 100,
+                            secureTextEntry = false,
+                            editable = true
+                        }: TextInputBlockType) => {
     return (
         <View style={styles.createWalletInner}>
             <Text style={styles.title}>{title}</Text>
@@ -21,6 +28,9 @@ const TextInputBlock = ({title, placeholder, value, setValue, multiline = false,
                 value={value}
                 placeholder={placeholder}
                 onChangeText={setValue}
+                enablesReturnKeyAutomatically
+                secureTextEntry={secureTextEntry}
+                editable={editable}
             />
         </View>
     );

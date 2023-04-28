@@ -6,7 +6,6 @@ import FavorDaoButton from "../components/FavorDaoButton";
 import {Padding, FontFamily, FontSize, Color, Border} from "../GlobalStyles";
 import {useEffect, useState} from "react";
 import {useNavigation} from '@react-navigation/native';
-import AgreeCheckBox from "../components/AgreeCheckbox";
 import ProtocolRadioSelect from "../components/ProtocolRadioSelect";
 
 const ImportWallet = () => {
@@ -34,12 +33,14 @@ const ImportWallet = () => {
                 placeholder={`Please enter passwords`}
                 value={password}
                 setValue={setPassword}
+                secureTextEntry={true}
             />
             <TextInputBlock
                 title={'Confirm Password'}
                 placeholder={`Please enter passwords again`}
                 value={repeatPassword}
                 setValue={setRepeatPassword}
+                secureTextEntry={true}
             />
             <ProtocolRadioSelect value={agree} setValue={setAgree}/>
             <FavorDaoButton
